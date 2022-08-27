@@ -1,0 +1,22 @@
+.header{
+    grid-area: header;
+    text-align: center;
+    width: 100%;
+    background-image: linear-gradient(#939292, #e6f5ed) ;
+}
+
+.header img{
+    height: 27vh;
+    width: 100%;
+    object-fit: none;
+    object-position: 50% 30%;
+    /*position: relative;*/
+}
+.loginNavlink{
+    color: #3b3b3b;
+    font-weight: bold;
+}
+.loginBlock{
+   float: right;
+    padding: 5px 50px;
+}

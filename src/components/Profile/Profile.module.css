@@ -1,0 +1,35 @@
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-4rem)
+}
+.post_label {
+    color: #b0b0b0;
+    padding-left: 10px;
+    background-image: linear-gradient(#1b4413, #26591d);
+}
+
+
+.new_post, .old_post {
+    margin-top: 0px;
+    margin-left: 10px;
+}
+
+textarea {
+    margin-top: 7px;
+    width: 100%;
+    border-radius: 2px;
+}
+
+button{
+    background-image: linear-gradient(#1b4413, #26591d);
+    color: #b0b0b0;
+    border: 1px solid #383838;
+    border-radius: 2px;
+    padding: 5px;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+

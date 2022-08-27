@@ -1,0 +1,42 @@
+.dialogs {
+    display: flex;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.dialogs_items {
+    margin-left: 1rem;
+}
+
+.messages {
+    margin-left: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.message {
+    margin-bottom: 1.5rem;
+    padding: 10px;
+
+}
+
+.newMessage textarea {
+    width: 515px;
+    margin-left: 5rem;
+    border-radius: 5px;
+    height: 70px;
+}
+
+
+.newMessage button {
+    width: 520px;
+    margin-left: 5rem;
+    border-radius: 5px;
+    margin-top: 3px;
+}
+
+.newMessage {
+    display: flex;
+    flex-direction: column;
+}
