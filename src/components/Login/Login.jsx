@@ -1,12 +1,12 @@
 import React from "react";
-import s from './Settings.module.css'
+import s from './Login.module.css'
 
-const Settings = () => {
+const Login = () => {
     return (
         <div>
-            Settings
+           Login
         </div>
     )
 }
 
-export default Settings;
+export default Login;

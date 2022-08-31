@@ -1,3 +1,5 @@
+import {authAPI, followAPI} from "../api/api";
+import {toggleFollowingInProgress, unfollow} from "./users-reducer";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 // const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
@@ -29,5 +31,18 @@ export const setAuthUserData = (id, login, email) => ({
         email
     }
 })
+
+
+export const authThunk  = () => {
+    return (dispatch) => {
+        authAPI.authGet().then(data => {
+            if (data.resultCode === 0) {
+                let {id, login, email} = data.data
+                dispatch(setAuthUserData(id, login, email))
+            }
+        });
+    }}
+
+
 
 export default authReducer

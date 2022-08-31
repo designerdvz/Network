@@ -7,31 +7,25 @@ import {
     changePage,
     setTotalUserCount,
     toggleIsFetching,
-    toggleFollowingInProgress
+    toggleFollowingInProgress, getUsersThunkCrator, getUsersThunkCreator, getUsers, unfollowThunk, followThunk
 } from "../../Redux/users-reducer";
 import Users from "./Users";
 import * as axios from "axios";
 import Preloader from "../common/Preloader/Preloader";
 import {userAPI} from "../../api/api";
+import {withAuthNavigation} from "../../hoc/AuthNavigate";
+import {compose} from "redux";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        userAPI.getUser(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(data.items)
-            this.props.setTotalUserCount(data.totalCount)
-        });
+        this.props.getUsers(this.props.currentPage, this.props.pagesize)
     }
 
     onPageChange = (pageNumber) => {
         this.props.changePage(pageNumber)
-        this.props.toggleIsFetching(true)
-        userAPI.getUser(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(data.items)
-        });
+        this.props.getUsers(this.props.currentPage, this.props.pagesize)
+
     }
 
 
@@ -45,8 +39,11 @@ class UsersContainer extends React.Component {
                    follow={this.props.follow}
                    onPageChange={this.onPageChange}
                    users={this.props.users}
+                   unfollowThunk ={this.props.unfollowThunk}
+                   followThunk ={this.props.followThunk}
                    followingInProgress = {this.props.followingInProgress}
                    toggleFollowingInProgress={this.props.toggleFollowingInProgress}
+                   isAuth = {this.props.isAuth}
             />
         </>
     }
@@ -59,17 +56,22 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        followingInProgress: state.usersPage.followingInProgress,
+        isAuth: state.auth.isAuth
     }
 }
 
+let withNavigate = withAuthNavigation(UsersContainer)
 
-export default connect(mapStateToProps, {
+export default compose(
+    withAuthNavigation,
+    connect(mapStateToProps, {
     follow,
     unfollow,
-    setUsers,
     changePage,
-    setTotalUserCount,
-    toggleIsFetching,
-    toggleFollowingInProgress
-})(UsersContainer)
+    toggleFollowingInProgress,
+    getUsers,
+    unfollowThunk,
+    followThunk
+}),
+    )(UsersContainer)

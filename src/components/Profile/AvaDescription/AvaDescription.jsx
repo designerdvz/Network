@@ -2,6 +2,7 @@ import React from "react";
 import s from './AvaDescription.module.css'
 import {NavLink} from "react-router-dom";
 import Preloader from "../../common/Preloader/Preloader";
+import ProfileStatus from "../ProfileStatus/ProfileStatus";
 
 const AvaDescription = (props) => {
     if (!props.profile) {
@@ -17,9 +18,10 @@ const AvaDescription = (props) => {
                     <p>{props.profile.fullName}</p>
                 </div>
                 <div className={s.description}>
-                    <p>description I'm deer</p>
+                    <ProfileStatus status={"Hello my friend"}/>
                 </div>
             </div>
+
     )
 }
 

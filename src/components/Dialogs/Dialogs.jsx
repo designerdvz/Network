@@ -6,6 +6,7 @@ import {
     addMessageActionCreator,
     updateNewMessageTextActionCreator,
 } from "../../Redux/message-reducer";
+import {Navigate} from "react-router-dom";
 
 
 const Dialogs = (props) => {
@@ -30,6 +31,8 @@ const Dialogs = (props) => {
     function addMessage () {
         props.addMessage()
     }
+
+    if (props.isAuth == false) return <Navigate to={"/login"}/>
 
     return (
         <div className={s.dialogs}>

@@ -32,14 +32,14 @@ export const authAPI = {
 }
 
 export const followAPI = {
-    followDelete (u)  {
-        return  instance.delete(`follow/${u.id}` ).then(response => {
+    followDelete (id)  {
+        return  instance.delete(`follow/${id}` ).then(response => {
             return response.data
         })
     },
 
-    followPost (u)  {
-        return   instance.post(`follow/${u.id}`, {}, )
+    followPost (id)  {
+        return   instance.post(`follow/${id}`, {}, )
             .then(response => {
                 return response.data
             })

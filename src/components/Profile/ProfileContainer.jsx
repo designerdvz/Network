@@ -5,10 +5,13 @@ import * as axios from "axios";
 import {connect} from "react-redux";
 import {setUserProfile} from "../../Redux/profile-reducer";
 import {
+    Navigate,
     useLocation,
     useNavigate,
     useParams,
 } from "react-router-dom";
+import {withAuthNavigation} from "../../hoc/AuthNavigate";
+import {compose} from "redux";
 
 
 
@@ -27,13 +30,20 @@ class ProfileContainer extends React.Component {
 
     render() {
         return (
-            <Profile {...this.props} profile={ this.props.profile}/>
+            <Profile {...this.props} isAuth = { this.props.isAuth} profile={ this.props.profile}/>
         )
     }
 }
 
+
+
+let AuthNavigateComponent = withAuthNavigation(ProfileContainer)
+
+
+
+
 let mapStateToProps = (state) => ({
-    profile: state.profile.profile
+    profile: state.profile.profile,
 })
 
 function withRouter(Component) {
@@ -51,10 +61,12 @@ function withRouter(Component) {
 }
 
 
-
-export default connect(mapStateToProps, {
-    setUserProfile})(withRouter(ProfileContainer))
-
+export default compose(
+    connect(mapStateToProps, {
+        setUserProfile}),
+    withRouter,
+    // withAuthNavigation
+)(ProfileContainer)
 
 
 
